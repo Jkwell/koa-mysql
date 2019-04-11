@@ -4,7 +4,7 @@ const User = require('./db')
 // 数据库的操作
 const findUser = (username) => {
     return new Promise ((resolve, reject) => {
-        User.findOne({ username }, (err, doc) => {
+        User.findOne({ 'username':  username}, (err, doc) => {
             if (err) {
                 reject(err)
             }

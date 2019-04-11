@@ -107,6 +107,7 @@ router.post('/userLogin', async(ctx, next) => {
   var _userpwd = ctx.request.body.userpwd;
   console.log(_userpwd)
   console.log(_username)
+  var password = sha1(_userpwd)
   let doc = await MongoService.findUser(_username)
   if (!doc) {
     console.log('检查用户名不存在')
@@ -119,8 +120,8 @@ router.post('/userLogin', async(ctx, next) => {
     ctx.status = 200
     ctx.body = {
       success: true,
-      username: username,
-      create_time: doc.create_time
+      username: doc.username,
+      age: doc.age
     }
   } else {
     console.log('密码错误')
